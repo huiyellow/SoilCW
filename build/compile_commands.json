@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/home/hui/gr-SoilCW/build/lib",
+  "command": "/usr/bin/c++  -DBOOST_ALL_NO_LIB -DBOOST_THREAD_DYN_LINK -DGR_MPLIB_GMP -DGR_PERFORMANCE_COUNTERS -DSPDLOG_COMPILED_LIB -Dgnuradio_SoilCW_EXPORTS -I/home/hui/gr-SoilCW/lib/../include   -fvisibility=hidden -Wsign-compare -Wall -Wno-uninitialized -O3 -DNDEBUG -fPIC   -std=c++17 -o CMakeFiles/gnuradio-SoilCW.dir/soil_cw_radar_cc_impl.cc.o -c /home/hui/gr-SoilCW/lib/soil_cw_radar_cc_impl.cc",
+  "file": "/home/hui/gr-SoilCW/lib/soil_cw_radar_cc_impl.cc"
+},
+{
+  "directory": "/home/hui/gr-SoilCW/build/lib",
+  "command": "/usr/bin/c++  -DBOOST_ALL_NO_LIB -DBOOST_THREAD_DYN_LINK -DGR_MPLIB_GMP -DGR_PERFORMANCE_COUNTERS -DSPDLOG_COMPILED_LIB -Dgnuradio_SoilCW_EXPORTS -I/home/hui/gr-SoilCW/lib/../include   -fvisibility=hidden -Wsign-compare -Wall -Wno-uninitialized -O3 -DNDEBUG -fPIC   -std=c++17 -o CMakeFiles/gnuradio-SoilCW.dir/bladerf_device.cc.o -c /home/hui/gr-SoilCW/lib/bladerf_device.cc",
+  "file": "/home/hui/gr-SoilCW/lib/bladerf_device.cc"
+},
+{
+  "directory": "/home/hui/gr-SoilCW/build/python/SoilCW/bindings",
+  "command": "/usr/bin/c++  -DBOOST_ALL_NO_LIB -DBOOST_DATE_TIME_DYN_LINK -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_REGEX_DYN_LINK -DBOOST_SYSTEM_DYN_LINK -DBOOST_THREAD_DYN_LINK -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -DGR_MPLIB_GMP -DGR_PERFORMANCE_COUNTERS -DSPDLOG_COMPILED_LIB -DSoilCW_python_EXPORTS -I/home/hui/gr-SoilCW/build/python/SoilCW/bindings -I/home/hui/gr-SoilCW/python/SoilCW/bindings/../../../lib -I/home/hui/gr-SoilCW/python/SoilCW/bindings/../../../include -I/home/hui/gr-SoilCW/lib/../include -isystem /usr/include/python3.8 -isystem /usr/lib/python3/dist-packages/numpy/core/include   -fvisibility=hidden -Wsign-compare -Wall -Wno-uninitialized -O3 -DNDEBUG -fPIC -fvisibility=hidden   -flto -fno-fat-lto-objects -Wno-unused-variable -std=c++17 -o CMakeFiles/SoilCW_python.dir/soil_cw_radar_cc_python.cc.o -c /home/hui/gr-SoilCW/python/SoilCW/bindings/soil_cw_radar_cc_python.cc",
+  "file": "/home/hui/gr-SoilCW/python/SoilCW/bindings/soil_cw_radar_cc_python.cc"
+},
+{
+  "directory": "/home/hui/gr-SoilCW/build/python/SoilCW/bindings",
+  "command": "/usr/bin/c++  -DBOOST_ALL_NO_LIB -DBOOST_DATE_TIME_DYN_LINK -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_REGEX_DYN_LINK -DBOOST_SYSTEM_DYN_LINK -DBOOST_THREAD_DYN_LINK -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -DGR_MPLIB_GMP -DGR_PERFORMANCE_COUNTERS -DSPDLOG_COMPILED_LIB -DSoilCW_python_EXPORTS -I/home/hui/gr-SoilCW/build/python/SoilCW/bindings -I/home/hui/gr-SoilCW/python/SoilCW/bindings/../../../lib -I/home/hui/gr-SoilCW/python/SoilCW/bindings/../../../include -I/home/hui/gr-SoilCW/lib/../include -isystem /usr/include/python3.8 -isystem /usr/lib/python3/dist-packages/numpy/core/include   -fvisibility=hidden -Wsign-compare -Wall -Wno-uninitialized -O3 -DNDEBUG -fPIC -fvisibility=hidden   -flto -fno-fat-lto-objects -Wno-unused-variable -std=c++17 -o CMakeFiles/SoilCW_python.dir/python_bindings.cc.o -c /home/hui/gr-SoilCW/python/SoilCW/bindings/python_bindings.cc",
+  "file": "/home/hui/gr-SoilCW/python/SoilCW/bindings/python_bindings.cc"
+}
+]

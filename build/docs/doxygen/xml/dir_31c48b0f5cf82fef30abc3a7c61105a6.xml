@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_31c48b0f5cf82fef30abc3a7c61105a6" kind="dir">
+    <compoundname>bindings</compoundname>
+    <innerfile refid="build_2python_2SoilCW_2bindings_2pydoc__macros_8h">build/python/SoilCW/bindings/pydoc_macros.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/hui/gr-SoilCW/build/python/SoilCW/bindings/"/>
+  </compounddef>
+</doxygen>
