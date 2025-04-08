@@ -211,5 +211,7 @@
 /usr/local/share/doc/gr-SoilCW/html/classgr_1_1SoilCW_1_1soil__cw__radar__cc.html
 /usr/local/share/doc/gr-SoilCW/html/bladerf__device_8h__incl.svg
 /usr/local/lib/python3.8/dist-packages/gnuradio/SoilCW/__init__.py
+/usr/local/lib/python3.8/dist-packages/gnuradio/SoilCW/ChannelResponseExtractor.py
 /usr/local/lib/python3.8/dist-packages/gnuradio/SoilCW/SoilCW_python.cpython-38-x86_64-linux-gnu.so
 /usr/local/share/gnuradio/grc/blocks/SoilCW_soil_cw_radar_cc.block.yml
+/usr/local/share/gnuradio/grc/blocks/SoilCW_ChannelResponseExtractor.block.yml

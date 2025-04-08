@@ -4,7 +4,7 @@ category: '[SoilCW]'
 
 templates:
   imports: from gnuradio import SoilCW
-  make: SoilCW.soil_cw_radar_cc(${main_freq}, ${delta_f}, ${samp_rate}, ${rx_gain}, ${tx_gain}, ${ref_gain}, ${enable_biastee}, ${baseband_amp}, ${baseband_freq})
+  make: SoilCW.soil_cw_radar_cc(${main_freq}, ${delta_f}, ${samp_rate}, ${rx_gain}, ${tx_gain}, ${ref_gain}, ${enable_biastee}, ${baseband_amp}, ${baseband_freq}, ${burst_len}, ${recv_len}, ${t_inc_send_ms})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:
@@ -39,6 +39,15 @@ parameters:
   dtype: float
 - id: baseband_freq
   label: frequency of baseband signal
+  dtype: float
+- id: burst_len
+  label: num of samples per pulse
+  dtype: int
+- id: recv_len
+  label: num of samples to receive at each frequency 
+  dtype: int
+- id: t_inc_send_ms
+  label: time to wait after frequency tunning
   dtype: float
 #- id: ...
 #  label: ...

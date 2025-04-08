@@ -24,7 +24,7 @@ if(NOT SoilCW_sources)
 endif(NOT SoilCW_sources)
 
 add_library(gnuradio-SoilCW SHARED ${SoilCW_sources})
-target_link_libraries(gnuradio-SoilCW gnuradio::gnuradio-runtime)
+target_link_libraries(gnuradio-SoilCW gnuradio::gnuradio-runtime bladeRF)
 target_include_directories(
     gnuradio-SoilCW
     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>

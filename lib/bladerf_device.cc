@@ -366,7 +366,7 @@ int BladerfDevice::set_quick_tune(struct frequency_plan_config *frequency_plan){
     d_quick_tunes_rx = new bladerf_quick_tune_info[frequency_plan->num_steps]; 
     bladerf_frequency freq = frequency_plan->start_freq;
     for (int i = 0; i < frequency_plan->num_steps; i++){
-        //std::cout << "set quick tune parameters for frequency: " << freq << std::endl;
+        std::cout << "set quick tune parameters for frequency: " << freq << std::endl;
         status = bladerf_set_frequency(device, BLADERF_TX, freq);
         if(status!=0){
             std::cerr << "set TX frequency to: "<< freq << " failed" << std::endl;
@@ -408,6 +408,8 @@ int BladerfDevice::tune_rx(int freq_index){
     int status = bladerf_schedule_retune(device, BLADERF_RX, BLADERF_RETUNE_NOW, 0, &d_quick_tunes_rx[freq_index].quick_tune);
     if(status != 0){
         std::cerr << "failed to tune RX: " << bladerf_strerror(status) << std::endl;
+    }else{
+        //std::cout << "RX Tuned to: " << d_quick_tunes_rx[freq_index].freq << std::endl;
     }
     return status;
 }
@@ -421,6 +423,8 @@ int BladerfDevice::tune_tx(int freq_index){
     int status = bladerf_schedule_retune(device, BLADERF_TX, BLADERF_RETUNE_NOW, 0, &d_quick_tunes_tx[freq_index].quick_tune);
     if(status != 0){
         std::cerr << "failed to tune RX: " << bladerf_strerror(status) << std::endl;
+    }else{
+        //std::cout << "TX Tuned to: " << d_quick_tunes_tx[freq_index].freq << std::endl;
     }
     return status;
 }

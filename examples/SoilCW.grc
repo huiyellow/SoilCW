@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: SoilCW
+    id: SoilCW_gui
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -81,6 +81,18 @@ blocks:
     coordinate: [648, 12.0]
     rotation: 0
     state: enabled
+- name: num_drops
+  id: variable
+  parameters:
+    comment: ''
+    value: 2**10
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1400, 12.0]
+    rotation: 0
+    state: enabled
 - name: pulse_amp
   id: variable
   parameters:
@@ -91,6 +103,18 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [888, 12.0]
+    rotation: 0
+    state: enabled
+- name: recv_len
+  id: variable
+  parameters:
+    comment: ''
+    value: burst_len+256
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1280, 12.0]
     rotation: 0
     state: enabled
 - name: ref_gain
@@ -109,7 +133,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '40'
+    value: '20'
   states:
     bus_sink: false
     bus_source: false
@@ -133,12 +157,30 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '40'
+    value: '30'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
     coordinate: [416, 12.0]
+    rotation: 0
+    state: enabled
+- name: SoilCW_ChannelResponseExtractor_0
+  id: SoilCW_ChannelResponseExtractor
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    dir: /home/hui/gr-SoilCW/data
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_drops: num_drops
+    recv_len: recv_len
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1072, 384.0]
     rotation: 0
     state: enabled
 - name: SoilCW_soil_cw_radar_cc_0
@@ -148,15 +190,18 @@ blocks:
     alias: ''
     baseband_amp: pulse_amp
     baseband_freq: cw_freq
+    burst_len: burst_len
     comment: ''
     delta_f: int(delta_f)
     enable_biastee: 'False'
     main_freq: int(main_freq)
     maxoutbuf: '0'
     minoutbuf: '0'
+    recv_len: recv_len
     ref_gain: int(ref_gain)
     rx_gain: int(rx_gain)
     samp_rate: int(samp_rate)
+    t_inc_send_ms: '10'
     tx_gain: int(tx_gain)
   states:
     bus_sink: false
@@ -178,61 +223,43 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1040, 464.0]
+    coordinate: [1256, 264.0]
     rotation: 0
     state: enabled
-- name: blocks_divide_xx_0
-  id: blocks_divide_xx
+- name: blocks_stream_to_vector_0
+  id: blocks_stream_to_vector
   parameters:
     affinity: ''
     alias: ''
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    num_inputs: '2'
+    num_items: recv_len
     type: complex
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [920, 328.0]
+    coordinate: [984, 304.0]
     rotation: 0
     state: enabled
-- name: blocks_integrate_xx_0
-  id: blocks_integrate_xx
+- name: blocks_stream_to_vector_0_0
+  id: blocks_stream_to_vector
   parameters:
     affinity: ''
     alias: ''
     comment: ''
-    decim: burst_len
     maxoutbuf: '0'
     minoutbuf: '0'
+    num_items: recv_len
     type: complex
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1064, 340.0]
-    rotation: 0
-    state: enabled
-- name: blocks_multiply_const_xx_0
-  id: blocks_multiply_const_xx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    const: 1/burst_len
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1256, 340.0]
+    coordinate: [976, 480.0]
     rotation: 0
     state: enabled
 - name: filter_fft_low_pass_filter_0
@@ -256,7 +283,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [696, 156.0]
+    coordinate: [728, 148.0]
     rotation: 0
     state: enabled
 - name: filter_fft_low_pass_filter_0_0
@@ -280,7 +307,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [696, 404.0]
+    coordinate: [744, 460.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0
@@ -369,15 +396,15 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    ylabel: Amplitude
-    ymax: '1'
-    ymin: '-1'
+    ylabel: Phase
+    ymax: '4'
+    ymin: '-4'
     yunit: '""'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1360, 396.0]
+    coordinate: [1496, 348.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0_0
@@ -395,7 +422,7 @@ blocks:
     alpha7: '1.0'
     alpha8: '1.0'
     alpha9: '1.0'
-    autoscale: 'False'
+    autoscale: 'True'
     axislabels: 'True'
     color1: blue
     color10: dark blue
@@ -466,7 +493,104 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    ylabel: Phase
+    ylabel: Amp
+    ymax: '4'
+    ymin: '-4'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1496, 212.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_0_1
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'True'
+    gui_hint: ''
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '""'
+    nconnections: '2'
+    size: recv_len*3
+    srate: samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
     ymax: '1'
     ymin: '-1'
     yunit: '""'
@@ -474,7 +598,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1360, 524.0]
+    coordinate: [1016, 188.0]
     rotation: 0
     state: enabled
 - name: scan_cont
@@ -515,15 +639,17 @@ blocks:
     state: enabled
 
 connections:
+- [SoilCW_ChannelResponseExtractor_0, '0', blocks_complex_to_magphase_0, '0']
 - [SoilCW_soil_cw_radar_cc_0, '0', filter_fft_low_pass_filter_0, '0']
 - [SoilCW_soil_cw_radar_cc_0, '1', filter_fft_low_pass_filter_0_0, '0']
-- [blocks_complex_to_magphase_0, '0', qtgui_time_sink_x_0, '0']
-- [blocks_complex_to_magphase_0, '1', qtgui_time_sink_x_0_0, '0']
-- [blocks_divide_xx_0, '0', blocks_integrate_xx_0, '0']
-- [blocks_integrate_xx_0, '0', blocks_multiply_const_xx_0, '0']
-- [blocks_multiply_const_xx_0, '0', blocks_complex_to_magphase_0, '0']
-- [filter_fft_low_pass_filter_0, '0', blocks_divide_xx_0, '0']
-- [filter_fft_low_pass_filter_0_0, '0', blocks_divide_xx_0, '1']
+- [blocks_complex_to_magphase_0, '0', qtgui_time_sink_x_0_0, '0']
+- [blocks_complex_to_magphase_0, '1', qtgui_time_sink_x_0, '0']
+- [blocks_stream_to_vector_0, '0', SoilCW_ChannelResponseExtractor_0, '0']
+- [blocks_stream_to_vector_0_0, '0', SoilCW_ChannelResponseExtractor_0, '1']
+- [filter_fft_low_pass_filter_0, '0', blocks_stream_to_vector_0, '0']
+- [filter_fft_low_pass_filter_0, '0', qtgui_time_sink_x_0_1, '0']
+- [filter_fft_low_pass_filter_0_0, '0', blocks_stream_to_vector_0_0, '0']
+- [filter_fft_low_pass_filter_0_0, '0', qtgui_time_sink_x_0_1, '1']
 - [scan_cont, pressed, SoilCW_soil_cw_radar_cc_0, scan]
 - [scan_once, pressed, SoilCW_soil_cw_radar_cc_0, scan]
 

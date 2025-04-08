@@ -33,7 +33,10 @@ Args:
     ref_gain : 
     enable_biastee : 
     baseband_amp : 
-    baseband_freq : )doc";
+    baseband_freq : 
+    burst_len : 
+    recv_len : 
+    t_inc_send_ms : )doc";
 
 
  static const char *__doc_gr_SoilCW_soil_cw_radar_cc_soil_cw_radar_cc = R"doc()doc";
@@ -56,6 +59,9 @@ Args:
     ref_gain : 
     enable_biastee : 
     baseband_amp : 
-    baseband_freq : )doc";
+    baseband_freq : 
+    burst_len : 
+    recv_len : 
+    t_inc_send_ms : )doc";
 
   

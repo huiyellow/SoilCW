@@ -23,7 +23,10 @@ soil_cw_radar_cc::sptr soil_cw_radar_cc::make(bladerf_frequency main_freq,
                                               bladerf_gain ref_gain,
                                               bool enable_biastee,
                                               float baseband_amp,
-                                              float baseband_freq)
+                                              float baseband_freq,
+                                              size_t burst_len,
+                                              size_t recv_len,
+                                              float t_inc_send_ms)
 {
     return gnuradio::make_block_sptr<soil_cw_radar_cc_impl>(main_freq,
                                                             delta_f,
@@ -33,7 +36,10 @@ soil_cw_radar_cc::sptr soil_cw_radar_cc::make(bladerf_frequency main_freq,
                                                             ref_gain,
                                                             enable_biastee,
                                                             baseband_amp,
-                                                            baseband_freq);
+                                                            baseband_freq,
+                                                            burst_len,
+                                                            recv_len,
+                                                            t_inc_send_ms);
 }
 
 
@@ -48,7 +54,10 @@ soil_cw_radar_cc_impl::soil_cw_radar_cc_impl(bladerf_frequency main_freq,
                                              bladerf_gain ref_gain,
                                              bool enable_biastee,
                                              float baseband_amp,
-                                             float baseband_freq)
+                                             float baseband_freq,
+                                             size_t burst_len,
+                                             size_t recv_len,
+                                             float t_inc_send_ms)
     : gr::sync_block("soil_cw_radar_cc",
                      gr::io_signature::make(0, 0, 0),
                      gr::io_signature::make(
@@ -59,17 +68,30 @@ soil_cw_radar_cc_impl::soil_cw_radar_cc_impl(bladerf_frequency main_freq,
      * the module starts sweep the frequencies upon reception of a "scan" message
      * */
     message_port_register_in(pmt::mp("scan"));
+    set_msg_handler(pmt::mp("scan"),[this](const pmt::pmt_t& msg){handle_scan_msg(msg);});
 
     d_samp_rate = samp_rate; 
     d_pulse_amplitude = baseband_amp;
     d_cw_frequency = baseband_freq;
+    d_burst_len = burst_len;
+    d_recv_len = recv_len;
+    std::cout << "d_burst_len: "<<d_burst_len << std::endl;
+    std::cout << "d_recv_len:" << d_recv_len << std::endl;
 
     /**
      * wait 2 ms after frequency tunning
      * */
-    d_ts_inc_send = (uint64_t)(d_samp_rate * 2)/1000;
+    d_ts_inc_send = (uint64_t)(d_samp_rate * t_inc_send_ms)/1000;
 
     init_sample_buffers();
+    
+    /**
+     * Set input/ouput contrains based on the d_recv_len
+     * */
+    //two rxs
+    set_output_multiple(NUM_RX_CHANNELS);
+    set_min_noutput_items(d_recv_len*d_num_steps);
+    set_min_output_buffer(d_recv_len*d_num_steps*NUM_RX_CHANNELS);
     
     /**
      * Initialize device
@@ -149,8 +171,8 @@ void soil_cw_radar_cc_impl::init_sample_buffers(){
     _32fcbuf_in = reinterpret_cast<gr_complex *>(volk_malloc(NUM_TX_CHANNELS*d_burst_len*sizeof(gr_complex), alignment));
     _16icbuf_in = reinterpret_cast<int16_t *>(volk_malloc(2*NUM_TX_CHANNELS*d_burst_len*sizeof(int16_t), alignment));
 
-    _32fcbuf_out = reinterpret_cast<gr_complex *>(volk_malloc(NUM_RX_CHANNELS*d_burst_len*sizeof(gr_complex), alignment));
-    _16icbuf_out = reinterpret_cast<int16_t *>(volk_malloc(2*NUM_RX_CHANNELS*d_burst_len*sizeof(int16_t), alignment));
+    _32fcbuf_out = reinterpret_cast<gr_complex *>(volk_malloc(NUM_RX_CHANNELS*d_recv_len*sizeof(gr_complex), alignment));
+    _16icbuf_out = reinterpret_cast<int16_t *>(volk_malloc(2*NUM_RX_CHANNELS*d_recv_len*sizeof(int16_t), alignment));
     
     _32fc_samples  = reinterpret_cast<gr_complex *>(volk_malloc(d_burst_len*sizeof(gr_complex), alignment));
 
@@ -168,6 +190,18 @@ void soil_cw_radar_cc_impl::generate_pure_tone_samples(){
     }
     volk_32f_s32f_convert_16i(_16icbuf_in, reinterpret_cast<float const *>(_32fcbuf_in),
                             SCALING_FACTOR, 2*NUM_TX_CHANNELS*d_burst_len);
+}
+
+void soil_cw_radar_cc_impl::handle_scan_msg(const pmt::pmt_t& msg){
+    std::cout << "received scan cmd" << std::endl;
+    std::cout << pmt::cdr(msg) << std::endl;
+    if ((pmt::to_long(pmt::cdr(msg)) == 1)){
+        d_scan = true;
+        d_continuous_scan_flag = false;
+    }else if ((pmt::to_long(pmt::cdr(msg)) == 2)){
+        d_scan = true;
+        d_continuous_scan_flag = true;
+    }
 }
 
 /*
@@ -206,7 +240,7 @@ int soil_cw_radar_cc_impl::work(int noutput_items,
         for (int i = 0; i < d_num_steps; i++){
             //add a step tag
             pmt::pmt_t new_freq_tag_value = pmt::from_uint64(i);
-            add_item_tag(0,nitems_written(0)+i*d_burst_len,new_freq_tag_key,new_freq_tag_value);
+            add_item_tag(0,nitems_written(0)+i*d_recv_len,new_freq_tag_key,new_freq_tag_value);
             
             /**
              * Tune frequency to the next step
@@ -234,20 +268,20 @@ int soil_cw_radar_cc_impl::work(int noutput_items,
             /**
              * Send a pulse and receive the echo
              * */
-            bladeRF->pulse(d_ts_inc_send, d_ts_inc_send, _16icbuf_in, d_burst_len*NUM_TX_CHANNELS, _16icbuf_out, d_burst_len*NUM_RX_CHANNELS);
+            bladeRF->pulse(d_ts_inc_send, d_ts_inc_send, _16icbuf_in, d_burst_len*NUM_TX_CHANNELS, _16icbuf_out, d_recv_len*NUM_RX_CHANNELS);
 
             /**
             * process received samples
             * */
             volk_16i_s32f_convert_32f(reinterpret_cast<float *>(_32fcbuf_out), _16icbuf_out,
-                            SCALING_FACTOR, 2*NUM_RX_CHANNELS*d_burst_len);
+                            SCALING_FACTOR, 2*NUM_RX_CHANNELS*d_recv_len);
 
             // we need to deinterleave the multiplex as we copy
             gr_complex const *deint_in = _32fcbuf_out;
             //gr_complex const *deint_in = _32fcbuf_in;
 
             //std::cout << "deinterleave" << std::endl;
-            for (size_t i = 0; i < (d_burst_len); ++i) {
+            for (size_t i = 0; i < (d_recv_len); ++i) {
                 for (size_t n = 0; n < NUM_RX_CHANNELS; ++n) {
                     memcpy(out[n]++, deint_in++, sizeof(gr_complex));
                 }
@@ -259,7 +293,7 @@ int soil_cw_radar_cc_impl::work(int noutput_items,
     }else{
         return 0;
     }
-    return d_num_steps*d_burst_len;
+    return d_num_steps*d_recv_len;
 }
 
 } /* namespace SoilCW */

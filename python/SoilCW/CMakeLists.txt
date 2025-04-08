@@ -19,7 +19,9 @@ add_subdirectory(bindings)
 ########################################################################
 # Install python sources
 ########################################################################
-gr_python_install(FILES __init__.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/SoilCW)
+gr_python_install(FILES __init__.py 
+    ChannelResponseExtractor.py
+    DESTINATION ${GR_PYTHON_DIR}/gnuradio/SoilCW)
 
 ########################################################################
 # Handle the unit tests

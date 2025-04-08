@@ -41,7 +41,10 @@ public:
                      bladerf_gain ref_gain,
                      bool enable_biastee,
                      float baseband_amp,
-                     float baseband_freq);
+                     float baseband_freq,
+                     size_t burst_len,
+                     size_t recv_len,
+                     float t_inc_send_ms);
 };
 
 } // namespace SoilCW

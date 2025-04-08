@@ -76,9 +76,9 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:af617ca59b967b492ad73b992fcd738ea"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classgr_1_1SoilCW_1_1soil__cw__radar__cc.html#a5904123dba69c1c5cc873f1e47da5ad0">sptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1SoilCW_1_1soil__cw__radar__cc.html#af617ca59b967b492ad73b992fcd738ea">make</a> (bladerf_frequency main_freq, bladerf_frequency delta_f, int samp_rate, bladerf_gain rx_gain, bladerf_gain tx_gain, bladerf_gain ref_gain, bool enable_biastee, float baseband_amp, float baseband_freq)</td></tr>
-<tr class="memdesc:af617ca59b967b492ad73b992fcd738ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a shared_ptr to a new instance of <a class="el" href="classgr_1_1SoilCW_1_1soil__cw__radar__cc.html" title="&lt;+description of block+&gt;">SoilCW::soil_cw_radar_cc</a>.  <a href="classgr_1_1SoilCW_1_1soil__cw__radar__cc.html#af617ca59b967b492ad73b992fcd738ea">More...</a><br /></td></tr>
-<tr class="separator:af617ca59b967b492ad73b992fcd738ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadfca6c219e69112a1f9995442f3ddbf"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classgr_1_1SoilCW_1_1soil__cw__radar__cc.html#a5904123dba69c1c5cc873f1e47da5ad0">sptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgr_1_1SoilCW_1_1soil__cw__radar__cc.html#aadfca6c219e69112a1f9995442f3ddbf">make</a> (bladerf_frequency main_freq, bladerf_frequency delta_f, int samp_rate, bladerf_gain rx_gain, bladerf_gain tx_gain, bladerf_gain ref_gain, bool enable_biastee, float baseband_amp, float baseband_freq, size_t burst_len, size_t recv_len, float t_inc_send_ms)</td></tr>
+<tr class="memdesc:aadfca6c219e69112a1f9995442f3ddbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a shared_ptr to a new instance of <a class="el" href="classgr_1_1SoilCW_1_1soil__cw__radar__cc.html" title="&lt;+description of block+&gt;">SoilCW::soil_cw_radar_cc</a>.  <a href="classgr_1_1SoilCW_1_1soil__cw__radar__cc.html#aadfca6c219e69112a1f9995442f3ddbf">More...</a><br /></td></tr>
+<tr class="separator:aadfca6c219e69112a1f9995442f3ddbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>&lt;+description of block+&gt; </p>
@@ -98,8 +98,8 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="af617ca59b967b492ad73b992fcd738ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af617ca59b967b492ad73b992fcd738ea">&#9670;&nbsp;</a></span>make()</h2>
+<a id="aadfca6c219e69112a1f9995442f3ddbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadfca6c219e69112a1f9995442f3ddbf">&#9670;&nbsp;</a></span>make()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,7 +159,25 @@ Static Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>baseband_freq</em>&#160;</td>
+          <td class="paramname"><em>baseband_freq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>burst_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>recv_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>t_inc_send_ms</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -175,7 +193,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Return a shared_ptr to a new instance of <a class="el" href="classgr_1_1SoilCW_1_1soil__cw__radar__cc.html" title="&lt;+description of block+&gt;">SoilCW::soil_cw_radar_cc</a>. </p>
-<p>To avoid accidental use of raw pointers, <a class="el" href="classgr_1_1SoilCW_1_1soil__cw__radar__cc.html" title="&lt;+description of block+&gt;">SoilCW::soil_cw_radar_cc</a>'s constructor is in a private implementation class. <a class="el" href="classgr_1_1SoilCW_1_1soil__cw__radar__cc.html#af617ca59b967b492ad73b992fcd738ea" title="Return a shared_ptr to a new instance of SoilCW::soil_cw_radar_cc.">SoilCW::soil_cw_radar_cc::make</a> is the public interface for creating new instances. </p>
+<p>To avoid accidental use of raw pointers, <a class="el" href="classgr_1_1SoilCW_1_1soil__cw__radar__cc.html" title="&lt;+description of block+&gt;">SoilCW::soil_cw_radar_cc</a>'s constructor is in a private implementation class. <a class="el" href="classgr_1_1SoilCW_1_1soil__cw__radar__cc.html#aadfca6c219e69112a1f9995442f3ddbf" title="Return a shared_ptr to a new instance of SoilCW::soil_cw_radar_cc.">SoilCW::soil_cw_radar_cc::make</a> is the public interface for creating new instances. </p>
 
 </div>
 </div>

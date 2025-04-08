@@ -21,10 +21,10 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="classgr_1_1SoilCW_1_1soil__cw__radar__cc_1af617ca59b967b492ad73b992fcd738ea" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classgr_1_1SoilCW_1_1soil__cw__radar__cc_1aadfca6c219e69112a1f9995442f3ddbf" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc_1a5904123dba69c1c5cc873f1e47da5ad0" kindref="member">sptr</ref></type>
         <definition>static sptr gr::SoilCW::soil_cw_radar_cc::make</definition>
-        <argsstring>(bladerf_frequency main_freq, bladerf_frequency delta_f, int samp_rate, bladerf_gain rx_gain, bladerf_gain tx_gain, bladerf_gain ref_gain, bool enable_biastee, float baseband_amp, float baseband_freq)</argsstring>
+        <argsstring>(bladerf_frequency main_freq, bladerf_frequency delta_f, int samp_rate, bladerf_gain rx_gain, bladerf_gain tx_gain, bladerf_gain ref_gain, bool enable_biastee, float baseband_amp, float baseband_freq, size_t burst_len, size_t recv_len, float t_inc_send_ms)</argsstring>
         <name>make</name>
         <param>
           <type>bladerf_frequency</type>
@@ -62,11 +62,23 @@
           <type>float</type>
           <declname>baseband_freq</declname>
         </param>
+        <param>
+          <type>size_t</type>
+          <declname>burst_len</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>recv_len</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>t_inc_send_ms</declname>
+        </param>
         <briefdescription>
 <para>Return a shared_ptr to a new instance of <ref refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc" kindref="compound">SoilCW::soil_cw_radar_cc</ref>. </para>
         </briefdescription>
         <detaileddescription>
-<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc" kindref="compound">SoilCW::soil_cw_radar_cc</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc_1af617ca59b967b492ad73b992fcd738ea" kindref="member">SoilCW::soil_cw_radar_cc::make</ref> is the public interface for creating new instances. </para>
+<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc" kindref="compound">SoilCW::soil_cw_radar_cc</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc_1aadfca6c219e69112a1f9995442f3ddbf" kindref="member">SoilCW::soil_cw_radar_cc::make</ref> is the public interface for creating new instances. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
@@ -106,9 +118,9 @@
         <label>gr::sync_block</label>
       </node>
     </collaborationgraph>
-    <location file="/home/hui/gr-SoilCW/include/gnuradio/SoilCW/soil_cw_radar_cc.h" line="24" column="1" bodyfile="/home/hui/gr-SoilCW/include/gnuradio/SoilCW/soil_cw_radar_cc.h" bodystart="23" bodyend="45"/>
+    <location file="/home/hui/gr-SoilCW/include/gnuradio/SoilCW/soil_cw_radar_cc.h" line="24" column="1" bodyfile="/home/hui/gr-SoilCW/include/gnuradio/SoilCW/soil_cw_radar_cc.h" bodystart="23" bodyend="48"/>
     <listofallmembers>
-      <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc_1af617ca59b967b492ad73b992fcd738ea" prot="public" virt="non-virtual"><scope>gr::SoilCW::soil_cw_radar_cc</scope><name>make</name></member>
+      <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc_1aadfca6c219e69112a1f9995442f3ddbf" prot="public" virt="non-virtual"><scope>gr::SoilCW::soil_cw_radar_cc</scope><name>make</name></member>
       <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc_1a5904123dba69c1c5cc873f1e47da5ad0" prot="public" virt="non-virtual"><scope>gr::SoilCW::soil_cw_radar_cc</scope><name>sptr</name></member>
     </listofallmembers>
   </compounddef>

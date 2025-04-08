@@ -38,7 +38,10 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3.8/dist-packages/gnuradio/SoilCW" TYPE FILE FILES "/home/hui/gr-SoilCW/python/SoilCW/__init__.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3.8/dist-packages/gnuradio/SoilCW" TYPE FILE FILES
+    "/home/hui/gr-SoilCW/python/SoilCW/__init__.py"
+    "/home/hui/gr-SoilCW/python/SoilCW/ChannelResponseExtractor.py"
+    )
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)

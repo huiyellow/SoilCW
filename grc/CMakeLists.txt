@@ -7,4 +7,5 @@
 #
 
 install(FILES
-    SoilCW_soil_cw_radar_cc.block.yml DESTINATION share/gnuradio/grc/blocks)
+    SoilCW_soil_cw_radar_cc.block.yml
+    SoilCW_ChannelResponseExtractor.block.yml DESTINATION share/gnuradio/grc/blocks)

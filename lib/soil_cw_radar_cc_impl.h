@@ -40,7 +40,8 @@ private:
     float d_pulse_amplitude;
     float d_cw_frequency;
     gr_complex d_phase = 0;
-    const unsigned int d_burst_len = 8192;
+    size_t d_burst_len;
+    size_t d_recv_len;
 
     /**
      * sampling rate in Hz
@@ -91,6 +92,7 @@ private:
      * The size of _32fc_samples: d_burst_len * sizeof(gr_complex)
      * Then pulse samples are generated and stored to _32fc_samples, based on the choice of waveform
      * @see fill_tx_buffer() is called after that
+     *
      * */
     void init_sample_buffers();
     
@@ -117,6 +119,9 @@ public:
      * @param enable_biastee    Set the flag if BT-100 and BT-200 are connected with radar TX and radar RX channels
      * @param baseband_amp      The amplitude of the baseband pulse
      * @param baseband_freq     The frequency of the baseband pulse
+     * @burst_len               Number of samples per pulse to Send
+     * @recv_len                Number of samples to receive at each frequency step, better to be larger than burst_len
+     * @t_inc_send_ms           Time to wait in ms for sending pulse and receiving echo at each frequency step
      * */
     soil_cw_radar_cc_impl(bladerf_frequency main_freq,
                           bladerf_frequency delta_f,
@@ -126,7 +131,10 @@ public:
                           bladerf_gain ref_gain,
                           bool enable_biastee,
                           float baseband_amp,
-                          float baseband_freq);
+                          float baseband_freq,
+                          size_t burst_len,
+                          size_t recv_len,
+                          float t_inc_send_ms);
     ~soil_cw_radar_cc_impl();
 
     // Where all the action really happens

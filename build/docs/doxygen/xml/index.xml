@@ -51,7 +51,7 @@
   </compound>
   <compound refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc" kind="class"><name>gr::SoilCW::soil_cw_radar_cc</name>
     <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc_1a5904123dba69c1c5cc873f1e47da5ad0" kind="typedef"><name>sptr</name></member>
-    <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc_1af617ca59b967b492ad73b992fcd738ea" kind="function"><name>make</name></member>
+    <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc_1aadfca6c219e69112a1f9995442f3ddbf" kind="function"><name>make</name></member>
   </compound>
   <compound refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl" kind="class"><name>gr::SoilCW::soil_cw_radar_cc_impl</name>
     <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1a5cb7c67d17b9f2ec6005fe99f47e91eb" kind="variable"><name>bladeRF</name></member>
@@ -59,7 +59,8 @@
     <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1ad3278d4ac782a8fc8341f2e824d2e88c" kind="variable"><name>d_pulse_amplitude</name></member>
     <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1a889733502cc2d48ed778d0c28eca636d" kind="variable"><name>d_cw_frequency</name></member>
     <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1a315aa77cc55bea0183c769f6546ca267" kind="variable"><name>d_phase</name></member>
-    <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1a863456000e9b8a5c1ddaa0197607423b" kind="variable"><name>d_burst_len</name></member>
+    <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1a80970501414b188f1580e892766bd318" kind="variable"><name>d_burst_len</name></member>
+    <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1af32bf8c1dfdedca8eb23c70f7b10b6bd" kind="variable"><name>d_recv_len</name></member>
     <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1a048ce8204eedc9a6bb60c60754912a83" kind="variable"><name>d_samp_rate</name></member>
     <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1a5f8efc298d90a3eec6c341385206e1b1" kind="variable"><name>d_num_steps</name></member>
     <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1af52869d0540c66b788e13d99b8a3ab21" kind="variable"><name>d_ts_inc_send</name></member>
@@ -74,7 +75,7 @@
     <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1a5e55060e4b2a6e7f210d2629274be38b" kind="function"><name>handle_scan_msg</name></member>
     <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1acc57de99af9da020cc4d1e2f4ac1d148" kind="function"><name>init_sample_buffers</name></member>
     <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1a36764c81347705de170e2fdc1e02061c" kind="function"><name>generate_pure_tone_samples</name></member>
-    <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1aa51e83688af14ef6569b55fed707af6e" kind="function"><name>soil_cw_radar_cc_impl</name></member>
+    <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1a3f26623133828f899f4b82383bb09138" kind="function"><name>soil_cw_radar_cc_impl</name></member>
     <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1a9cb8a113e0992a7f6a2ec73bf6a07ee1" kind="function"><name>~soil_cw_radar_cc_impl</name></member>
     <member refid="classgr_1_1SoilCW_1_1soil__cw__radar__cc__impl_1a3ac8970ce22877818ab08526655607c2" kind="function"><name>work</name></member>
   </compound>
