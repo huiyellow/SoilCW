@@ -10,12 +10,13 @@
 import numpy as np
 from gnuradio import gr
 import pmt
+import json
 
 class ChannelResponseExtractor(gr.sync_block):
     """
     docstring for block ChannelResponseExtractor
     """
-    def __init__(self, recv_len, num_drops, dir):
+    def __init__(self, recv_len, num_drops, dir, f_c, delta_f, d_g, d_m, cable_length, cable_speed_factor):
         gr.sync_block.__init__(self,
             name="ChannelResponseExtractor",
             in_sig=[(np.complex64,recv_len),(np.complex64,recv_len)],
@@ -27,6 +28,20 @@ class ChannelResponseExtractor(gr.sync_block):
         self.current_file = None
         self.fileIndex = 0
         self.dir = dir
+        self.scan_param = {
+            "main frequency":f_c,
+            "delta_f":delta_f,
+            "d_g":d_g,
+            "d_m":d_m,
+            "cable_length":cable_length,
+            "cable_speed_factor":cable_speed_factor
+        }
+
+        filename = f"{self.dir}/scan_meta.json"
+        with open(filename,"w") as f:
+            json.dump(self.scan_param, f)
+        print("scan parameters: ", self.scan_param)
+        print("saved to ", filename)
     
     def fix_iq_imbalance(self, x):
         # remove DC and save input power

@@ -170,8 +170,14 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
+    cable_length: '0.6'
+    cable_speed_factor: '0.697'
     comment: ''
+    d_g: '0.05'
+    d_m: '0.3'
+    delta_f: int(delta_f)
     dir: /home/hui/gr-SoilCW/data
+    f_c: int(main_freq)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_drops: num_drops
@@ -180,7 +186,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1072, 384.0]
+    coordinate: [1120, 364.0]
     rotation: 0
     state: enabled
 - name: SoilCW_soil_cw_radar_cc_0
@@ -241,7 +247,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [984, 304.0]
+    coordinate: [960, 288.0]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_vector_0_0
@@ -259,7 +265,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [976, 480.0]
+    coordinate: [992, 552.0]
     rotation: 0
     state: enabled
 - name: filter_fft_low_pass_filter_0

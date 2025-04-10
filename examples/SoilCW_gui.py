@@ -238,7 +238,7 @@ class SoilCW_gui(gr.top_block, Qt.QWidget):
         self.blocks_stream_to_vector_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, recv_len)
         self.blocks_complex_to_magphase_0 = blocks.complex_to_magphase(1)
         self.SoilCW_soil_cw_radar_cc_0 = SoilCW.soil_cw_radar_cc(int(main_freq), int(delta_f), int(samp_rate), int(rx_gain), int(tx_gain), int(ref_gain), False, pulse_amp, cw_freq, burst_len, recv_len, 10)
-        self.SoilCW_ChannelResponseExtractor_0 = SoilCW.ChannelResponseExtractor(recv_len,num_drops, '/home/hui/gr-SoilCW/data')
+        self.SoilCW_ChannelResponseExtractor_0 = SoilCW.ChannelResponseExtractor(recv_len,num_drops,'/home/hui/gr-SoilCW/data',int(main_freq),int(delta_f),0.05,0.3,0.6,0.697)
 
 
         ##################################################

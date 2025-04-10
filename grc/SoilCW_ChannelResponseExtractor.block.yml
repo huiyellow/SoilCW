@@ -4,7 +4,7 @@ category: '[SoilCW]'
 
 templates:
   imports: from gnuradio import SoilCW
-  make: SoilCW.ChannelResponseExtractor(${recv_len},${num_drops},${dir})
+  make: SoilCW.ChannelResponseExtractor(${recv_len},${num_drops},${dir},${f_c},${delta_f},${d_g},${d_m},${cable_length},${cable_speed_factor})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:
@@ -20,8 +20,26 @@ parameters:
   label: number of samples to drop 
   dtype: int
 - id: dir
-  label: dirctory to store channel respones
+  label: data dirctory 
   dtype: string
+- id: f_c
+  label: main frequency
+  dtype: int
+- id: delta_f
+  label: delta_f
+  dtype: int
+- id: d_g
+  label: d_g
+  dtype: float
+- id: d_m
+  label: d_m
+  dtype: float
+- id: cable_length
+  label: cable_length
+  dtype: float
+- id: cable_speed_factor
+  label: cable_speed_factor
+  dtype: float
 #- id: ...
 #  label: ...
 #  dtype: ...
